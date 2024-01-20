@@ -5,14 +5,14 @@ describe('new project', () => {
     const password = Cypress.env('user_password')
     const projectName = `project-${faker.datatype.uuid()}`;
     const description = faker.random.words(10);
-    const options = { cacheSession: true}
+    const options = { env: { snapshotOnly: true } }
 
     beforeEach(() => {
         cy.doLogin(user, password, options)
         cy.api_deleteProjects()
       })
 
-    it('create a new project', () => {
+    it('create a new project', options, () => {
         
         cy.createProject(projectName, description)
         cy.url()

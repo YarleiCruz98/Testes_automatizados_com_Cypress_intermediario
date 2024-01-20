@@ -1,6 +1,8 @@
 import { faker } from '@faker-js/faker'
 
-describe('Create Issue', () => {
+const options = { env: { snapshotOnly: true } }
+
+describe('Create Issue', options,() => {
 
   const issue = {
     title: `issue-${faker.datatype.uuid()}`,
@@ -10,6 +12,8 @@ describe('Create Issue', () => {
       description: faker.random.words(5)
     }
   }
+  
+
 
   beforeEach(() => {
     cy.doLogin()
